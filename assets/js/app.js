@@ -13,7 +13,17 @@ const { createApp } = Vue
  createApp({
    data() {
      return {
-       
+       url: "https://flynn.boolean.careers/exercises/api/random/mail",
+       email: null,
      }
+   },
+   mounted(){
+    // console.log(axios);
+    // console.log(axios.get(this.url));
+    axios.get(this.url)
+    .then(response => {
+        this.email = response.data.response;
+        console.log(this.email);
+    })
    }
 }).mount('#app')
