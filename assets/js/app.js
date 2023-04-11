@@ -10,20 +10,25 @@ Bonus
 
 const { createApp } = Vue
 
- createApp({
-   data() {
-     return {
-       url: "https://flynn.boolean.careers/exercises/api/random/mail",
-       email: null,
-     }
-   },
-   mounted(){
-    // console.log(axios);
-    // console.log(axios.get(this.url));
-    axios.get(this.url)
-    .then(response => {
-        this.email = response.data.response;
-        console.log(this.email);
-    })
-   }
+createApp({
+    data() {
+        return {
+            url: "https://flynn.boolean.careers/exercises/api/random/mail",
+            email: null,
+            emailList: [],
+        }
+    },
+    mounted() {
+
+        for (let i = 0; i < 10; i++) {
+            axios
+            .get(this.url)
+            .then(response => {
+                this.email = response.data.response;
+                this.emailList.push(this.email);
+            })
+
+        }
+        console.log(this.emailList);
+    }
 }).mount('#app')
