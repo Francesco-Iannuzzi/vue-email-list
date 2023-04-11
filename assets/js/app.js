@@ -18,17 +18,21 @@ createApp({
             emailList: [],
         }
     },
-    mounted() {
-
-        for (let i = 0; i < 10; i++) {
-            axios
-            .get(this.url)
-            .then(response => {
-                this.email = response.data.response;
-                this.emailList.push(this.email);
-            })
-
+    methods: {
+        generateRandomEmail(){
+            for (let i = 0; i < 10; i++) {
+                axios
+                .get(this.url)
+                .then(response => {
+                    this.email = response.data.response;
+                    this.emailList.push(this.email);
+                })
+    
+            }
+            console.log(this.emailList);
         }
-        console.log(this.emailList);
+    },
+    mounted() {
+        this.generateRandomEmail()
     }
 }).mount('#app')
